@@ -18,6 +18,7 @@ import pandas as pd
 import numpy as np
 from typing import List, Optional
 import requests
+import time
 
 # ============= INITIALIZE APP =============
 # Create a FastAPI application instance
@@ -366,6 +367,38 @@ async def root():
         "docs": "Visit /docs for interactive API documentation"
     }
 
+
+@app.get("/health")
+async def healthcheck():
+    """
+    Healthcheck endpoint for deployments/monitoring.
+
+    Returns basic service status plus whether core data/models are loaded.
+    """
+    started_at = getattr(app.state, "started_at", None)
+    uptime_seconds = None
+    if started_at is not None:
+        uptime_seconds = max(0.0, time.time() - started_at)
+
+    return {
+        "ok": True,
+        "service": "next-pick",
+        "version": "2.0.0",
+        "uptime_seconds": uptime_seconds,
+        "models_loaded": {
+            "movies": movies_df is not None and len(movies_df) > 0,
+            "movie_similarity": similarity_matrix is not None,
+            "books": book_pivot is not None and len(book_pivot.index) > 0,
+            "book_similarity": book_similarity is not None,
+            "popular_books": popular_books is not None and len(popular_books) > 0,
+        },
+        "counts": {
+            "movies": len(movies_df) if movies_df is not None else 0,
+            "books": len(book_pivot.index) if book_pivot is not None else 0,
+            "popular_books": len(popular_books) if popular_books is not None else 0,
+        },
+    }
+
 @app.get("/api/movies", response_model=MoviesResponse)
 async def get_all_movies():
     """
@@ -551,6 +584,7 @@ async def startup_event():
     Runs when the API starts
     Good place for initialization tasks
     """
+    app.state.started_at = time.time()
     print("=" * 50)
     print("🎬📚 Movie & Book Recommender API Started!")
     print("=" * 50)
