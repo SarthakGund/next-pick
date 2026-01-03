@@ -41,6 +41,7 @@ test_api.py
 test_*.py
 
 # Documentation and Setup Files
+README.md
 SETUP_GUIDE.md
 DEPLOYMENT_GUIDE.md
 GITHUB_GUIDE.md
