@@ -40,7 +40,12 @@ Solution: Tell FastAPI to allow requests from React's origin
 """
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174", "http://localhost:5173", "http://localhost:3000"],  # React app's URL
+    allow_origins=[
+        "http://localhost:5174", 
+        "http://localhost:5173", 
+        "http://localhost:3000",
+        "https://next-pick.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
