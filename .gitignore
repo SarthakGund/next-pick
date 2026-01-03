@@ -40,9 +40,13 @@ desktop.ini
 test_api.py
 test_*.py
 
-# Documentation (optional, you can keep these if you want)
-# SETUP_GUIDE.md
-# API_GUIDE.md
+# Documentation and Setup Files
+SETUP_GUIDE.md
+DEPLOYMENT_GUIDE.md
+GITHUB_GUIDE.md
+REPO_STRUCTURE.md
+App.jsx.template
+*.ps1
 
 # Frontend
 movie-recommender-frontend/node_modules/
