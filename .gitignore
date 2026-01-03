@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# CSV Data Files (raw data, not needed in production)
+*.csv
+
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test Files
+test_api.py
+test_*.py
+
+# Documentation (optional, you can keep these if you want)
+# SETUP_GUIDE.md
+# API_GUIDE.md
+
+# Frontend
+movie-recommender-frontend/node_modules/
+movie-recommender-frontend/dist/
+movie-recommender-frontend/.env
+movie-recommender-frontend/.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IMPORTANT: Keep these files (DO NOT ignore)
+# !*.pkl
+# !requirements.txt
+# !main.py
+# !package.json
